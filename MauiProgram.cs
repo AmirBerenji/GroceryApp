@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using GroceryApp.Services;
+using GroceryApp.ViewModels;
+using GroceryApp.Views;
 using Microsoft.Extensions.Logging;
 
 namespace GroceryApp
@@ -14,15 +16,18 @@ namespace GroceryApp
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Ubuntu-Regular.ttf", "UbuntuRegular");
+                    fonts.AddFont("Ubuntu-Bold.ttf", "UbuntuBold");
                 });
 
 
             builder.Services.AddSingleton<CategoryService>();
+            builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddSingleton<HomePageViewModel>();
+
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
