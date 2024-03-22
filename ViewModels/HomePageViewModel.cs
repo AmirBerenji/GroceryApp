@@ -19,12 +19,17 @@ namespace GroceryApp.ViewModels
         }
 
         public ObservableCollection<Category> Categories { get; set; } = new();
+        public ObservableCollection<Offer> Offers  { get; set; } = new();
 
         public async Task InitializeAsync()
         {
             var mainCategory  = await _categoryService.GetMainCategoriesAsync();
+            var listOffer = Offer.GetOffers();
             foreach (var category in mainCategory) 
                 Categories.Add(category);
+
+            foreach (var offer in listOffer)
+                Offers.Add(offer);
             
         }
     }
