@@ -5,11 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GroceryApp"
     Shell.FlyoutBehavior="Disabled"
-    Title="GroceryApp">
+    Title="GroceryApp"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:GroceryApp.Views"
+    Shell.TabBarBackgroundColor="{StaticResource Mid}" 
+    Shell.TabBarTitleColor="{StaticResource White}"
+    Shell.BackgroundColor="{StaticResource Mid}"
+    Shell.TabBarUnselectedColor="{StaticResource White}">
 
-    <ShellContent
-        Title="Home"
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" />
+    </Shell.Behaviors>
+    
+    <!--<ShellContent
+        Title="Grocery App"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage" />-->
+    <TabBar>
+        <ShellContent Title="Home" Icon="bxs_home" ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
+        <ShellContent Title="Category" Icon="bxs_category" ContentTemplate="{DataTemplate views:CategoriesPage}" Route="CategoryPage" />
+        <ShellContent Title="Orders" Icon="bxs_list" ContentTemplate="{DataTemplate views:OrdersPage}" Route="OrderPage" />
+        <ShellContent Title="Profile" Icon="bxs_user" ContentTemplate="{DataTemplate views:ProfilePage}" Route="ProfilePage" />
+        <ShellContent Title="Help" Icon="bxs_help" ContentTemplate="{DataTemplate views:HelpPage}" Route="HelpPage" />
+    </TabBar>
 
 </Shell>
