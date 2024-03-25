@@ -69,6 +69,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="Grocery.Shared\Grocery.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Controls\Spacer.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

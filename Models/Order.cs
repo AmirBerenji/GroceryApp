@@ -1,4 +1,4 @@
-﻿using GroceryApp.Enumerations;
+﻿using Grocery.Shared.Enumerations;
 
 namespace GroceryApp.Models
 {
