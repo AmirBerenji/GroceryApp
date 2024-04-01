@@ -19,9 +19,20 @@ namespace Grocery.Api.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            SeedData(ref modelBuilder);
         }
+        private static void SeedData(ref ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Role>().HasData(Role.GetInitialRoles);
+            
+            modelBuilder.Entity<User>().HasData(User.GetInitialUsers);
+
+        }
+
     }
 }

@@ -61,6 +61,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Grocery.Api\**" />
+	  <AndroidResource Remove="Grocery.Shared\**" />
+	  <Compile Remove="Grocery.Api\**" />
+	  <Compile Remove="Grocery.Shared\**" />
+	  <EmbeddedResource Remove="Grocery.Api\**" />
+	  <EmbeddedResource Remove="Grocery.Shared\**" />
+	  <MauiCss Remove="Grocery.Api\**" />
+	  <MauiCss Remove="Grocery.Shared\**" />
+	  <MauiXaml Remove="Grocery.Api\**" />
+	  <MauiXaml Remove="Grocery.Shared\**" />
+	  <None Remove="Grocery.Api\**" />
+	  <None Remove="Grocery.Shared\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
