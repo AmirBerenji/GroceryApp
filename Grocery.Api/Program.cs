@@ -27,4 +27,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+var masterGroup = app.MapGroup("/masters").AllowAnonymous();
+
+masterGroup.MapGet("/categories", async (DataContext context) =>
+    await context.Categories.AsNoTracking().ToArrayAsync()
+);
+
+masterGroup.MapGet("/offers", async (DataContext context) =>
+    await context.Offers.AsNoTracking().ToArrayAsync()
+);
+
+app.Run("https://localhost:12345");

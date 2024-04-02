@@ -7,7 +7,7 @@
         public string Code { get; set; }
         public Color BgColor { get; set; }
 
-        public Offer(string title, string description,  Color bgColor, string code)
+        public Offer(string title, string description, Color bgColor, string code)
         {
             Title = title;
             Description = description;
@@ -27,5 +27,5 @@
 
         }
     }
-    
+
 }

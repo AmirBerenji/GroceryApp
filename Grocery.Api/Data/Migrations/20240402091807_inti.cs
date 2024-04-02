@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Grocery.Api.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class inti : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,10 +19,10 @@ namespace Grocery.Api.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Image = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: false),
-                    Credit = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Credit = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,8 +35,8 @@ namespace Grocery.Api.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     BgColor = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -178,6 +178,38 @@ namespace Grocery.Api.Data.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "Credit", "Image", "Name", "ParentId" },
+                values: new object[,]
+                {
+                    { 1, "Photo by <a href=\"https://unsplash.com/@juliazolotova?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Julia Zolotova</a> on <a href=\"https://unsplash.com/photos/M_xIaxQE3Ms?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "fruits.png", "Fruits", 0 },
+                    { 2, "Photo by <a href=\"https://unsplash.com/@rejaul_creativedesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Rejaul Karim</a> on <a href=\"https://unsplash.com/photos/uI3SmaQeu6o?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "seasonal_fruits.png", "Seasonal Fruits", 1 },
+                    { 3, "Photo by <a href=\"https://unsplash.com/@alschim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Alexander Schimmeck</a> on <a href=\"https://unsplash.com/photos/9YVh9yQvvvk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "exotic_fruits.png", "Exotic Fruits", 1 },
+                    { 4, "Photo by <a href=\"https://unsplash.com/@marisolbenitez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Marisol Benitez</a> on <a href=\"https://unsplash.com/photos/QvkAQTNj4zk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "vegetables.png", "Vegetables", 0 },
+                    { 5, "Photo by Viktoria  Slowikowska: https://www.pexels.com/photo/sweet-corn-and-green-vegetables-on-blue-surface-5678106/", "green_vegetables.png", "Green Vegetables", 4 },
+                    { 6, "Photo by <a href=\"https://unsplash.com/@woonsa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Soo Ann Woon</a> on <a href=\"https://unsplash.com/photos/0l_NXp3StHE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "leafy_vegetables.png", "Leafy Vegetables", 4 },
+                    { 7, "Photo by <a href=\"https://unsplash.com/@nadineprimeau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Nadine Primeau</a> on <a href=\"https://unsplash.com/photos/-ftWfohtjNw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "salads.png", "Salads", 4 },
+                    { 8, "Photo by <a href=\"https://unsplash.com/@picoftasty?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Mae Mu</a> on <a href=\"https://unsplash.com/photos/ru4jyDiLHsI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "dairy.png", "Dairy", 0 },
+                    { 9, "Photo by <a href=\"https://unsplash.com/@mehrshadr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Mehrshad Rajabi</a> on <a href=\"https://unsplash.com/photos/P7MkoYvSnLI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "milk_curd_yogurt.png", "Milk, Curd & Yogurts", 8 },
+                    { 10, "Photo by Elle Hughes: https://www.pexels.com/photo/three-assorted-varieties-of-cheese-near-tableknife-1963288/", "butter_cheese.png", "Butter & Cheese", 8 },
+                    { 11, "Photo by <a href=\"https://unsplash.com/@rudy_issa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Rudy Issa</a> on <a href=\"https://unsplash.com/photos/KVacTm0QeEA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "eggs_meat.png", "Eggs & Meat", 0 },
+                    { 12, "Photo by <a href=\"https://unsplash.com/@erol?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Erol Ahmed</a> on <a href=\"https://unsplash.com/photos/leOh1CzRZVQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "eggs.png", "Eggs", 11 },
+                    { 13, "Photo by <a href=\"https://unsplash.com/@shootdelicious?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Eiliv Aceron</a> on <a href=\"https://unsplash.com/photos/AQ_BdsvLgqA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "meat.png", "Meat", 11 },
+                    { 14, "Photo by <a href=\"https://unsplash.com/pt-br/@maxmota?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Max Mota</a> on <a href=\"https://unsplash.com/photos/N6BTNbaKZMo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ", "seafood.png", "Seafood", 11 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Offer",
+                columns: new[] { "Id", "BgColor", "Code", "Description", "IsActive", "Title" },
+                values: new object[,]
+                {
+                    { 1, "#dad1f9", "FRT30", "Enjoy upto 30% off on all fruits", false, "Upto 30% off" },
+                    { 2, "#e28083", "50OFF", "Enjoy our big offer of 50% off on all green vegetables", false, "Green Veg Big Sale 50% OFF" },
+                    { 3, "#ffff00", "EXT100", "Flat Rs. 100 off on all exotic fruits and vegetables", false, "Flat 100 OFF" },
+                    { 4, "#ffff00", "FRT25", "Enjoy 25% off on all seasonal fruits", false, "25% OFF on Seasonal Fruits" }
                 });
 
             migrationBuilder.InsertData(

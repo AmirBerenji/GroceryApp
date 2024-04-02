@@ -32,6 +32,10 @@ namespace Grocery.Api.Data
             
             modelBuilder.Entity<User>().HasData(User.GetInitialUsers);
 
+            modelBuilder.Entity<Category>().HasData(Category.GetInitialData());
+
+            modelBuilder.Entity<Offer>().HasData(Offer.GetInitialData());
+
         }
 
     }

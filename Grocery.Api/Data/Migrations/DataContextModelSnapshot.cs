@@ -70,8 +70,8 @@ namespace Grocery.Api.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Credit")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -80,8 +80,8 @@ namespace Grocery.Api.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("ParentId")
                         .HasColumnType("int");
@@ -89,6 +89,120 @@ namespace Grocery.Api.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@juliazolotova?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Julia Zolotova</a> on <a href=\"https://unsplash.com/photos/M_xIaxQE3Ms?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "fruits.png",
+                            Name = "Fruits",
+                            ParentId = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@rejaul_creativedesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Rejaul Karim</a> on <a href=\"https://unsplash.com/photos/uI3SmaQeu6o?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "seasonal_fruits.png",
+                            Name = "Seasonal Fruits",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@alschim?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Alexander Schimmeck</a> on <a href=\"https://unsplash.com/photos/9YVh9yQvvvk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "exotic_fruits.png",
+                            Name = "Exotic Fruits",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@marisolbenitez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Marisol Benitez</a> on <a href=\"https://unsplash.com/photos/QvkAQTNj4zk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "vegetables.png",
+                            Name = "Vegetables",
+                            ParentId = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Credit = "Photo by Viktoria  Slowikowska: https://www.pexels.com/photo/sweet-corn-and-green-vegetables-on-blue-surface-5678106/",
+                            Image = "green_vegetables.png",
+                            Name = "Green Vegetables",
+                            ParentId = 4
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@woonsa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Soo Ann Woon</a> on <a href=\"https://unsplash.com/photos/0l_NXp3StHE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "leafy_vegetables.png",
+                            Name = "Leafy Vegetables",
+                            ParentId = 4
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@nadineprimeau?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Nadine Primeau</a> on <a href=\"https://unsplash.com/photos/-ftWfohtjNw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "salads.png",
+                            Name = "Salads",
+                            ParentId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@picoftasty?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Mae Mu</a> on <a href=\"https://unsplash.com/photos/ru4jyDiLHsI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "dairy.png",
+                            Name = "Dairy",
+                            ParentId = 0
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@mehrshadr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Mehrshad Rajabi</a> on <a href=\"https://unsplash.com/photos/P7MkoYvSnLI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "milk_curd_yogurt.png",
+                            Name = "Milk, Curd & Yogurts",
+                            ParentId = 8
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Credit = "Photo by Elle Hughes: https://www.pexels.com/photo/three-assorted-varieties-of-cheese-near-tableknife-1963288/",
+                            Image = "butter_cheese.png",
+                            Name = "Butter & Cheese",
+                            ParentId = 8
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@rudy_issa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Rudy Issa</a> on <a href=\"https://unsplash.com/photos/KVacTm0QeEA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "eggs_meat.png",
+                            Name = "Eggs & Meat",
+                            ParentId = 0
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@erol?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Erol Ahmed</a> on <a href=\"https://unsplash.com/photos/leOh1CzRZVQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "eggs.png",
+                            Name = "Eggs",
+                            ParentId = 11
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Credit = "Photo by <a href=\"https://unsplash.com/@shootdelicious?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Eiliv Aceron</a> on <a href=\"https://unsplash.com/photos/AQ_BdsvLgqA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "meat.png",
+                            Name = "Meat",
+                            ParentId = 11
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Credit = "Photo by <a href=\"https://unsplash.com/pt-br/@maxmota?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Max Mota</a> on <a href=\"https://unsplash.com/photos/N6BTNbaKZMo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText\">Unsplash</a>\r\n  ",
+                            Image = "seafood.png",
+                            Name = "Seafood",
+                            ParentId = 11
+                        });
                 });
 
             modelBuilder.Entity("Grocery.Api.Data.Entities.Offer", b =>
@@ -111,20 +225,58 @@ namespace Grocery.Api.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Offer");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BgColor = "#dad1f9",
+                            Code = "FRT30",
+                            Description = "Enjoy upto 30% off on all fruits",
+                            IsActive = false,
+                            Title = "Upto 30% off"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BgColor = "#e28083",
+                            Code = "50OFF",
+                            Description = "Enjoy our big offer of 50% off on all green vegetables",
+                            IsActive = false,
+                            Title = "Green Veg Big Sale 50% OFF"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BgColor = "#ffff00",
+                            Code = "EXT100",
+                            Description = "Flat Rs. 100 off on all exotic fruits and vegetables",
+                            IsActive = false,
+                            Title = "Flat 100 OFF"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BgColor = "#ffff00",
+                            Code = "FRT25",
+                            Description = "Enjoy 25% off on all seasonal fruits",
+                            IsActive = false,
+                            Title = "25% OFF on Seasonal Fruits"
+                        });
                 });
 
             modelBuilder.Entity("Grocery.Api.Data.Entities.Order", b =>
