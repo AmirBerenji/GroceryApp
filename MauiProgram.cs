@@ -49,6 +49,7 @@ namespace GroceryApp
             builder.Services.AddSingleton<CategoryService>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<HomePageViewModel>();
+            builder.Services.AddTransient<OfferService>();
 
 
 #if DEBUG
