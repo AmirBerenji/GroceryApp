@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Grocery.Shared\Grocery.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\categories\" />
+  </ItemGroup>
+
 </Project>

@@ -14,10 +14,20 @@ namespace GroceryApp.Models
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Image { get; set; }
+        // public string Image { get; set; }
+        private string _image;
+
+        public string Image
+        {
+            get => _image; 
+            set { _image = $"https://localhost:12345/images/categories/{value}"; }
+        }
+
+
         public int ParentId { get; set; }
         public string? Credit { get; set; }
         public bool IsMainCategory => ParentId == 0;
+        //public string? ImageUrl => $"https:/localhost:12345/images/categories/{Image}";
     }
 
 }
