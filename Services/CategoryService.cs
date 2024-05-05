@@ -1,39 +1,29 @@
-﻿
-using GroceryApp.Constants;
-using GroceryApp.Models;
-using System.Text.Json;
+﻿using GroceryApp.Models;
 
 namespace GroceryApp.Services
 {
 
 
-    public class CategoryService
+    public class CategoryService : BaseApiService
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        
         private IEnumerable<Category>? _categories;
-        public CategoryService(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+        public CategoryService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+        {}
         public async ValueTask<IEnumerable<Category>> GetCategoriesAsync() 
         {
             if (_categories is not null)
                 return _categories;
 
-            var httpClient = _httpClientFactory.CreateClient(AppConstants.HttpClientName);
-            var response = await httpClient.GetAsync("/masters/categories");
+            var response = await HttpClient.GetAsync("/masters/categories");
 
-            if (response.IsSuccessStatusCode)
-            {
-                var content  = await response.Content.ReadAsStringAsync();
-                _categories = JsonSerializer.Deserialize<IEnumerable<Category>>(content, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-                return _categories;
-            }
+            var categories = await HandleApiResponseAsync<IEnumerable<Category>>(response, null);
             
-            return Enumerable.Empty<Category>();
+            if (categories is null)
+                return Enumerable.Empty<Category>();
+            
+            _categories = categories;
+            return _categories;
         }
 
         public async ValueTask<IEnumerable<Category>> GetMainCategoriesAsync() => (await GetCategoriesAsync()).Where(x => x.ParentId == 0);

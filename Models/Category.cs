@@ -20,7 +20,7 @@ namespace GroceryApp.Models
         public string Image
         {
             get => _image; 
-            set { _image = $"https://localhost:12345/images/categories/{value}"; }
+            set { _image = $"https://raw.githubusercontent.com/AmirBerenji/GroceryApp/master/Grocery.Api/wwwroot/images/categories/{value}"; }
         }
 
 
