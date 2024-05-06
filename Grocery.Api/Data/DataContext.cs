@@ -36,6 +36,8 @@ namespace Grocery.Api.Data
 
             modelBuilder.Entity<Offer>().HasData(Offer.GetInitialData());
 
+            modelBuilder.Entity<Product>().HasData(Product.GetInitialData());
+
         }
 
     }
