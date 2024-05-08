@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Grocery.Shared.Dtos;
 using GroceryApp.Models;
 using GroceryApp.Services;
 using System;
@@ -26,7 +27,7 @@ namespace GroceryApp.ViewModels
         public ObservableCollection<Category> Categories { get; set; } = new();
         public ObservableCollection<Offer> Offers  { get; set; } = new();
 
-        public ObservableCollection<Product> Products { get; set; } = new();
+        public ObservableCollection<ProductDto> PopularProducts { get; set; } = new();
 
 
         [ObservableProperty]
@@ -46,7 +47,7 @@ namespace GroceryApp.ViewModels
                     Offers.Add(offer);
 
                 foreach (var product in popularProducts)
-                    Products.Add(product);
+                    PopularProducts.Add(product);
                
             }
             finally

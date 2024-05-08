@@ -1,0 +1,29 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Grocery.Shared.Dtos
+{
+    public partial class ProductDto : ObservableObject
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        [ObservableProperty]
+        private string? _image; 
+        public decimal Price { get; set; }
+        public string Unit { get; set; }
+        public int CategoryId { get; set; }
+
+        [ObservableProperty]
+        private int _cartQuantity;
+
+        public ProductDto(int id, string name, string? image, decimal price, string unit, int categoryId)
+        {
+            Id = id;
+            Name = name;
+            Image = image;
+            Price = price;
+            Unit = unit;
+            CategoryId = categoryId;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 using Grocery.Api.Constants;
 using Grocery.Api.Data;
+using Grocery.Api.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,7 +42,12 @@ app.MapGet("/popular-products", async (DataContext context,int? count) =>
     {
         if (!count.HasValue || count <= 0)
             count = 6;
-        var randomProducts = await context.Products.AsNoTracking().OrderBy(p => Guid.NewGuid()).Take(count.Value).ToArrayAsync();
+        var randomProducts = await context.Products
+        .AsNoTracking()
+        .OrderBy(p => Guid.NewGuid())
+        .Take(count.Value)
+        .Select(Product.DtoSelector)
+        .ToArrayAsync();
         return TypedResults.Ok(randomProducts);
     }
 );

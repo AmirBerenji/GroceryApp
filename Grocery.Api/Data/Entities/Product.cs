@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Grocery.Shared.Dtos;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace Grocery.Api.Data.Entities
 {
@@ -94,5 +96,8 @@ namespace Grocery.Api.Data.Entities
 
             return products;
         }
+
+        internal static readonly Expression<Func<Product, ProductDto>> DtoSelector =
+            p => new ProductDto(p.Id, p.Name, p.Image, p.Price, p.Unit, p.CategoryId);
     }
 }
