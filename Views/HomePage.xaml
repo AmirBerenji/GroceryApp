@@ -9,7 +9,7 @@
              x:DataType="vm:HomePageViewModel"
              xmlns:converters="clr-namespace:GroceryApp.Converter"
              xmlns:controls="clr-namespace:GroceryApp.Controls"
-             xmlns:dto="clr-namespace:Grocery.Shared.Dtos;assembly=Grocery.Shared">
+             >
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -44,7 +44,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="Margin" Value="0, 1"/>
             </Style>
-            <Style TargetType="Button" x:Key="CartBtn" >
+            <!--<Style TargetType="Button" x:Key="CartBtn" >
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Margin" Value="0"/>
                 <Setter Property="HeightRequest" Value="30"/>
@@ -61,14 +61,14 @@
                 <Setter Property="WidthRequest" Value="60"/>
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>
+            </Style>-->
         </ResourceDictionary>
         
     </ContentPage.Resources>
 
     <ScrollView>
         <Grid>
-            <VerticalStackLayout Margin="10,15">
+            <VerticalStackLayout Margin="10,15" VerticalOptions="Fill" >
                 <Label >
                     <Label.FormattedText>
                         <FormattedString>
@@ -136,60 +136,9 @@
                 </CollectionView>
                 <controls:Spacer  Space="15" />
                 <Label Text="Popular" Style="{StaticResource H2}"/>
-                <FlexLayout BindableLayout.ItemsSource="{Binding PopularProducts}" 
-                            Wrap="Wrap" 
-                            JustifyContent="SpaceEvenly" >
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="dto:ProductDto" >
-                            <Border Padding="10" Margin="2" BackgroundColor="#FF9F1e" FlexLayout.Basis="50%" >
-                                <Grid RowDefinitions="175,Auto,Auto,Auto" >
-                                    <Image Grid.Row="0"
-                                           Source="https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           HeightRequest="175"
-                                           />
-                                    <Label Grid.Row="1" Text="{Binding Name}" 
-                                           VerticalOptions="Center" 
-                                           HorizontalOptions="Start"
-                                           FontAttributes="Bold"
-                                           FontSize="16"/>
-                                    <Label Grid.Row="2" Text="{Binding Unit}" FontSize="12" />
-                                    <Grid Grid.Row="3" ColumnDefinitions="*,2*"  >
-                                        <Label Grid.Column="0" Text="{Binding Price,StringFormat='${0}'}" VerticalOptions="Center" />
-                                        <Button Grid.Column="1" Text="Add" Style="{StaticResource AddToCartBtn}" IsVisible="False" >
-                                            <Button.Triggers>
-                                                <DataTrigger TargetType="Button" Binding="{Binding CartQuantity}" Value="0">
-                                                    <Setter Property="IsVisible" Value="True"/>
-                                                </DataTrigger>
-                                            </Button.Triggers>
-                                        </Button>
-                                        <Border 
-                                            Grid.Column="1" 
-                                            IsVisible="True"
-                                            StrokeShape="RoundRectangle 6" 
-                                            StrokeThickness="1" 
-                                            BackgroundColor="White"
-                                            Stroke="{StaticResource Primary}">
-                                            <Border.Triggers>
-                                                <DataTrigger TargetType="Border" Binding="{Binding CartQuantity}" Value="0">
-                                                    <Setter Property="IsVisible" Value="false"/>
-                                                </DataTrigger>
-                                            </Border.Triggers>
-                                            <Grid   ColumnDefinitions="Auto,*,Auto">
-                                                <Button Grid.Column="0" Text="-" Style="{StaticResource CartBtn}" />
-                                                <Label Grid.Column="1"  Text="{Binding CartQuantity}" VerticalOptions="Center" HorizontalOptions="Center" />
-                                                <Button Grid.Column="2" Text="+" Style="{StaticResource CartBtn}"/>
-                                            </Grid>
-
-                                        </Border>
-                                    </Grid>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                        
-                    </BindableLayout.ItemTemplate>
-                </FlexLayout>
+                
+                <controls:ProductListControl Products="{Binding PopularProducts}" />
+              
             </VerticalStackLayout>
             <Grid IsVisible="{Binding IsBusy}">
                 <BoxView Color="{StaticResource Mid}"  />
