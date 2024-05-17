@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Grocery.Shared.Dtos;
 using GroceryApp.Models;
 using GroceryApp.Services;
@@ -55,6 +56,22 @@ namespace GroceryApp.ViewModels
                 IsBusy = false;
             }
             
+        }
+
+        [RelayCommand]
+        private void AddToCart(int productId) => UpdateCart(productId, 1);
+        
+        [RelayCommand]
+        private void RemoveFromCart(int productId) => UpdateCart(productId, -1);
+
+
+        private void UpdateCart(int productId,int count)
+        {
+            var product = PopularProducts.FirstOrDefault(x => x.Id == productId);
+            if (product is not null)
+            {
+                product.CartQuantity += count;
+            }
         }
     }
 }

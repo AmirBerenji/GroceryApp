@@ -19,4 +19,16 @@ public partial class HomePage : ContentPage
         await _viewModel.InitializeAsync();
 
     }
+
+    private void ProductListControl_AddRemoveCartClick(object sender, Controls.ProductCartItemChangeEventArgs e)
+    {
+        if (e.Count > 0)
+        {
+            _viewModel.AddToCartCommand.Execute(e.ProductId);
+        }
+        else
+        {
+            _viewModel.RemoveFromCartCommand.Execute(e.ProductId);
+        }
+    }
 }

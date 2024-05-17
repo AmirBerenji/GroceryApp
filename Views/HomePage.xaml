@@ -44,24 +44,6 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="Margin" Value="0, 1"/>
             </Style>
-            <!--<Style TargetType="Button" x:Key="CartBtn" >
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="HeightRequest" Value="30"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="WidthRequest" Value="35" />
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>
-            <Style TargetType="Button" x:Key="AddToCartBtn" >
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="HeightRequest" Value="30"/>
-                <Setter Property="WidthRequest" Value="60"/>
-                <Setter Property="VerticalOptions" Value="Center" />
-                <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>-->
         </ResourceDictionary>
         
     </ContentPage.Resources>
@@ -137,7 +119,7 @@
                 <controls:Spacer  Space="15" />
                 <Label Text="Popular" Style="{StaticResource H2}"/>
                 
-                <controls:ProductListControl Products="{Binding PopularProducts}" />
+                <controls:ProductListControl Products="{Binding PopularProducts}" AddRemoveCartClick="ProductListControl_AddRemoveCartClick" />
               
             </VerticalStackLayout>
             <Grid IsVisible="{Binding IsBusy}">
