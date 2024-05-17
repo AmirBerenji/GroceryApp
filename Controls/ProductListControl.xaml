@@ -65,7 +65,7 @@
                                                 Text="Add"
                                                 Style="{StaticResource AddToCartBtn}"
                                                 IsVisible="False"
-                                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=AddtoCartCommand}"
+                                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=AddToCartCommand}"
                                             CommandParameter="{Binding Id}">
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button"
@@ -95,7 +95,7 @@
                                     <Button Grid.Column="0"
                                             Text="-"
                                             Style="{StaticResource CartBtn}"
-                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=RemoveFromCartCommand}"
+                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=RemoveFromCardCommand}"
                                             CommandParameter="{Binding Id}"/>
                                     <Label Grid.Column="1" 
                                                    Text="{Binding CartQuantity}"
@@ -104,7 +104,7 @@
                                     <Button Grid.Column="2"
                                                 Text="+"
                                                 Style="{StaticResource CartBtn}"
-                                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=AddtoCartCommand}"             
+                                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type controls:ProductListControl}},Path=AddToCartCommand}"             
                                                 CommandParameter="{Binding Id}"/>
                                 </Grid>
                             </Border>

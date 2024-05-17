@@ -38,6 +38,6 @@ public partial class ProductListControl : ContentView
 
 	[RelayCommand]
 	private void RemoveFromCard(int productId) => AddRemoveCartClick?.Invoke(this, new ProductCartItemChangeEventArgs(productId, -1));
-}
+
 
 }
