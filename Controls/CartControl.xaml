@@ -13,6 +13,11 @@
              Margin="5"
              StrokeThickness="0"
              x:Name="container">
+        <!--<Border.Triggers>
+            <DataTrigger TargetType="Border" Binding="{Binding Count}" Value="0">
+                <Setter Property="IsVisible" Value="False"/>
+            </DataTrigger>
+        </Border.Triggers>-->
         <Border.Shadow>
             <Shadow Offset="1,1" Brush="{StaticResource Primary}" Opacity="10" Radius="10" />
         </Border.Shadow>
