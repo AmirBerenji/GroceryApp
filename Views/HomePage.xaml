@@ -48,7 +48,10 @@
         
     </ContentPage.Resources>
 
-    <ScrollView>
+    <Grid>
+        
+    
+        <ScrollView>
         <Grid>
             <VerticalStackLayout Margin="10,15" VerticalOptions="Fill" >
                 <Label >
@@ -131,5 +134,6 @@
             </Grid>
         </Grid>
     </ScrollView>
-    
+        <controls:CartControl Count="{Binding CartCount}"/>
+    </Grid>
 </ContentPage>

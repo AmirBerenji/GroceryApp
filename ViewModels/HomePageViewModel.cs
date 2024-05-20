@@ -17,12 +17,14 @@ namespace GroceryApp.ViewModels
         private readonly CategoryService _categoryService;
         private readonly OfferService _offerService;
         private readonly ProductService _productService;
+        private readonly CartViewModel _cartViewModel;
 
-        public HomePageViewModel(CategoryService categoryService, OfferService offerService, ProductService productService )
+        public HomePageViewModel(CategoryService categoryService, OfferService offerService, ProductService productService,CartViewModel cartViewModel )
         {
             _categoryService = categoryService;
             _offerService = offerService;
             _productService = productService;
+            _cartViewModel = cartViewModel;
         }
 
         public ObservableCollection<Category> Categories { get; set; } = new();
@@ -33,6 +35,9 @@ namespace GroceryApp.ViewModels
 
         [ObservableProperty]
         private bool _isBusy = true;
+
+        [ObservableProperty]
+        private int _cartCount;
 
         public async Task InitializeAsync()
         {
@@ -71,6 +76,19 @@ namespace GroceryApp.ViewModels
             if (product is not null)
             {
                 product.CartQuantity += count;
+
+                if (count == -1)
+                {
+                    //We are remove from Cart
+                    _cartViewModel.RemoveFromCartCommand.Execute(product.Id);
+                }
+                else
+                {
+                    //Adding Cart
+                    _cartViewModel.AddToCartCommand.Execute(product);
+                }
+
+                CartCount = _cartViewModel.Count;
             }
         }
     }

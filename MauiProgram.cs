@@ -52,6 +52,8 @@ namespace GroceryApp
             builder.Services.AddSingleton<HomePageViewModel>();
             builder.Services.AddSingleton<HomePage>();
 
+
+            builder.Services.AddSingleton<CartViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
