@@ -40,7 +40,7 @@
                                     BackgroundColor="#ff9f1e"
                                     FlexLayout.Basis="50%">
                     <Grid RowDefinitions="175, Auto, Auto, Auto">
-                        <Image Grid.Row="0"
+                        <Image Grid.Row="0" Source="https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center"
                                            HeightRequest="175"

@@ -1,3 +1,5 @@
+using GroceryApp.Views;
+
 namespace GroceryApp.Controls;
 
 public partial class CartControl : ContentView
@@ -71,5 +73,10 @@ public partial class CartControl : ContentView
             }
             
         }
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(CartPage));
     }
 }
