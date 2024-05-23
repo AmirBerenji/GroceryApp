@@ -55,6 +55,9 @@ namespace GroceryApp
 
             builder.Services.AddSingleton<CartViewModel>();
             builder.Services.AddTransient<CartPage>();
+
+            builder.Services.AddTransient<CategoriesPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
