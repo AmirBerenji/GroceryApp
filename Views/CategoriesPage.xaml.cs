@@ -28,4 +28,12 @@ public partial class CategoriesPage : ContentPage
 
         }
     }
+
+    private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection?[0] is Category category)
+        {
+            await Shell.Current.GoToAsync(nameof(CategoryProductsPage));
+        }
+    }
 }

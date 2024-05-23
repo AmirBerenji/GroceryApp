@@ -26,8 +26,18 @@ namespace GroceryApp.Services
             return _categories;
         }
 
-        public async ValueTask<IEnumerable<Category>> GetMainCategoriesAsync() => (await GetCategoriesAsync()).Where(x => x.ParentId == 0);
-        
+        public async ValueTask<IEnumerable<Category>> GetMainCategoriesAsync() => 
+                (await GetCategoriesAsync()).Where(x => x.ParentId == 0);
 
+        public async Task<IEnumerable<Category>> GetSubOrSiblingCategoriesAsync(int categoryId)
+        {
+            var allCategories = await GetCategoriesAsync();
+            var thisCategory = allCategories.First(c => c.Id == categoryId);
+
+            var mainCategoryId = thisCategory.IsMainCategory ? categoryId : thisCategory.ParentId;
+
+            return allCategories.Where(x => x.ParentId == mainCategoryId).ToList();
+
+        }
     }
 }
