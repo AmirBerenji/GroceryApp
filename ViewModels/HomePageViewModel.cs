@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GroceryApp.ViewModels
 {
-    public partial class HomePageViewModel : ObservableObject
+    public partial class HomePageViewModel : ObservableObject,IDisposable
     {
         private readonly CategoryService _categoryService;
         private readonly OfferService _offerService;
@@ -25,7 +25,28 @@ namespace GroceryApp.ViewModels
             _offerService = offerService;
             _productService = productService;
             _cartViewModel = cartViewModel;
+
+
+            _cartViewModel.CartCountUpdated += CartViewModel_CartCountUpdated;
+            _cartViewModel.CartItemUpdated += CartViewModel_CartItemUpdated;
+            _cartViewModel.CartItemRemoved += CartViewModel_CartItemRemoved;
         }
+
+        private void CartViewModel_CartItemRemoved(object? sender, int productId) => ModifyProductQuantity(productId, 0);
+
+        private void CartViewModel_CartItemUpdated(object? sender, CartItem e) => ModifyProductQuantity(e.ProductId,e.Quantity);
+        
+
+        private void ModifyProductQuantity(int productId, int quantity)
+        {
+            var product = PopularProducts.FirstOrDefault(x => x.Id == productId);
+            if (product is not null)
+            {
+                product.CartQuantity = quantity;
+            }
+        }
+
+        private void CartViewModel_CartCountUpdated(object? sender, int cartCount) => CartCount = cartCount;
 
         public ObservableCollection<Category> Categories { get; set; } = new();
         public ObservableCollection<Offer> Offers  { get; set; } = new();
@@ -39,8 +60,13 @@ namespace GroceryApp.ViewModels
         [ObservableProperty]
         private int _cartCount;
 
+        private bool _isInitialize = false;
+
+
         public async Task InitializeAsync()
         {
+            if (_isInitialize) return;
+
             try
             {
                 var listOffer = _offerService.GetActiveOfferAsync();
@@ -54,7 +80,8 @@ namespace GroceryApp.ViewModels
 
                 foreach (var product in popularProducts)
                     PopularProducts.Add(product);
-               
+
+                _isInitialize= true;
             }
             finally
             {
@@ -90,6 +117,14 @@ namespace GroceryApp.ViewModels
 
                 CartCount = _cartViewModel.Count;
             }
+        }
+
+        public void Dispose()
+        {
+
+            _cartViewModel.CartCountUpdated -= CartViewModel_CartCountUpdated;
+            _cartViewModel.CartItemUpdated -= CartViewModel_CartItemUpdated;
+            _cartViewModel.CartItemRemoved -= CartViewModel_CartItemRemoved;
         }
     }
 }

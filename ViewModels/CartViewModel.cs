@@ -13,6 +13,12 @@ namespace GroceryApp.ViewModels
 {
     public partial class CartViewModel : ObservableObject
     {
+        public event EventHandler<int> CartCountUpdated;
+        public event EventHandler<CartItem> CartItemUpdated;
+        public event EventHandler<int> CartItemRemoved;
+
+
+
         public ObservableCollection<CartItem> CartItems { get; set; } = new();
 
         [ObservableProperty]
@@ -32,6 +38,7 @@ namespace GroceryApp.ViewModels
             {
                 item.Quantity++;
                 RecalculateTotalAmount();
+                CartItemUpdated?.Invoke(this, item);
             }
 
         }
@@ -57,8 +64,12 @@ namespace GroceryApp.ViewModels
                 };
                 CartItems.Add(item);
                 Count = CartItems.Count;
+
+                
+                CartCountUpdated?.Invoke(this, Count);
             }
             RecalculateTotalAmount();
+            CartItemUpdated?.Invoke(this, item);
         }
 
         [RelayCommand]
@@ -71,10 +82,13 @@ namespace GroceryApp.ViewModels
                 {
                     CartItems.Remove(item);
                     Count = CartItems.Count;
+                    CartItemRemoved?.Invoke(this, productId);
+                    CartCountUpdated?.Invoke(this, Count);
                 }
                 else
                 {
                     item.Quantity--;
+                    CartItemUpdated?.Invoke(this, item);
                 }
 
                 RecalculateTotalAmount();
